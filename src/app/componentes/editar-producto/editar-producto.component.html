@@ -1,0 +1,94 @@
+<div class="contenedorPrincipal">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img [src]="producto.img" class="card-img-top" alt="heroe.nombre" style="height: 400px;" alt="producto.nombre">
+                    <div class="card-header">
+                        {{producto.nombre}}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{producto.info}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text"><small class="">{{producto.precio| currency:"CRC":"symbol-narrow"}}</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-4">
+                <h2>Editar producto</h2>
+                <form #editarProductoForm="ngForm" (ngSubmit)="editarProducto(editarProductoForm)" class="mt-5">
+                    <flash-messages></flash-messages>
+                    <div class="form-group">
+                        <label for="nombre">Nombre Producto</label>
+                        <input type="text" placeholder="Ingrese nombre producto" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="producto.nombre" [ngClass]=" { 'is-invalid': nombre.errors && nombre.touched} " required minlength=" 2 ">
+                        <div [hidden]="!nombre.errors?.required " class="invalid-feedback ">
+                            Nombre Requerido
+                        </div>
+                        <div [hidden]="!nombre.errors?.minlength " class="invalid-feedback ">
+                            Debe de contener al menos dos caracteres
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="info">Información Producto</label>
+                        <input type="text" placeholder="Ingrese información del producto" name="info" class="form-control" #info="ngModel" [(ngModel)]="producto.info" [ngClass]=" { 'is-invalid': info.errors && info.touched} " required minlength=" 2 ">
+                        <div [hidden]="!nombre.errors?.required " class="invalid-feedback ">
+                            Información Requerida
+                        </div>
+                        <div [hidden]="!nombre.errors?.minlength " class="invalid-feedback ">
+                            Debe de contener al menos dos caracteres
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio Producto</label>
+                        <input type="number" placeholder="Ingrese precio de prodcuto" name="precio" class="form-control" #precio="ngModel" [(ngModel)]="producto.precio" [ngClass]=" { 'is-invalid': precio.errors && precio.touched} " required>
+                        <div [hidden]="!precio.errors?.required " class="invalid-feedback ">
+                            Precio Requerido
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="img">Imagen Producto</label>
+                        <input type="file" name="img" class="form-control" #img="ngModel" [(ngModel)]="producto.img" [ngClass]=" { 'is-invalid': img.errors && img.touched} " required (change)="cargarIMG($event)">
+                        <div [hidden]="img.errors?.required " class="invalid-feedback ">
+                            Imagen Requerida
+                        </div>
+
+                    </div>
+
+
+
+                    <section id="botones">
+                        <div class="row">
+
+                            <div class="col-md-4 mt-2">
+                                <button type="submit" class="btn bg-orche btn-block">
+                                    <i class="fas fa-save"></i> Guardar cambios
+                                </button>
+
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <a routerLink="" (click)="eliminar()" class="btn bg-contra btn-block">
+                                    <i class="fas fa-trash"></i> Eliminar producto
+                                </a>
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <a [routerLink]="['/dahsboard']" class="btn  btn-block">
+                                    <i class="fas fa-arrow-left"></i>Regresar dahsboard
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="contenedorPrincipal">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <button type="button" class="btn bg-orche btn-block " data-toggle="modal" data-target="#exampleModal">
+            Agregar Nuevo Producto
+         </button>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="container mt-5 mb-4">
+        <div class="row">
+            <div class="card-group">
+                <div class="card mx-2" *ngFor="let producto of productos, let i=index">
+                    <img [src]="producto.img" class="card-img-top" alt="..." style="height: 300px;">
+                    <div class="card-header">
+                        {{producto.nombre}}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{producto.info}}</p>
+                        <p class="card-text"><small class="">{{producto.precio| currency:"CRC":"symbol-narrow"}}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn bg-orche btn-block" routerLink="/producto/editar/{{producto.id}}">Editar</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-1">
+
+
+
+
+
+
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                             </button>
+                        </div>
+                        <div class="modal-body">
+                            <flash-messages></flash-messages>
+                            <h2 class="text-center my-5">Agregar Producto</h2>
+                            <form #productoForm="ngForm" (ngSubmit)="agregarProducto(productoForm)">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre Producto</label>
+                                    <input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="producto.nombre" [ngClass]=" { 'is-invalid': nombre.errors && nombre.touched} " required minlength=" 2 ">
+                                    <div [hidden]="!nombre.errors?.required " class="invalid-feedback ">
+                                        Nombre Requerido
+                                    </div>
+                                    <div [hidden]="!nombre.errors?.minlength " class="invalid-feedback ">
+                                        Debe de contener al menos dos caracteres
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="info">Información Producto</label>
+                                    <input type="text" name="info" class="form-control" #info="ngModel" [(ngModel)]="producto.info" [ngClass]=" { 'is-invalid': info.errors && info.touched} " required minlength=" 2 ">
+                                    <div [hidden]="!nombre.errors?.required " class="invalid-feedback ">
+                                        Información Requerida
+                                    </div>
+                                    <div [hidden]="!nombre.errors?.minlength " class="invalid-feedback ">
+                                        Debe de contener al menos dos caracteres
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="precio">Precio Producto</label>
+                                    <input type="number" name="precio" class="form-control" #precio="ngModel" [(ngModel)]="producto.precio" [ngClass]=" { 'is-invalid': precio.errors && precio.touched} " required>
+                                    <div [hidden]="!nombre.errors?.required " class="invalid-feedback ">
+                                        Precio Requerido
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="precio">Imagen Producto</label>
+                                    <input (change)="cargarIMG($event)" type="file" name="img" class="form-control" #img="ngModel" [(ngModel)]="producto.img" [ngClass]=" { 'is-invalid': img.errors && img.touched} " required (change)="cargarIMG($event)">
+                                    <div [hidden]="!img.errors?.required " class="invalid-feedback ">
+                                        Imagen Requerida
+                                    </div>
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-success text-white" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn bg-orche" data-dismiss="modal"> Guardar</button>
+                                </div>
+
+                                <!--
+                                                <li *ngIf="isLoggedIn" class="nav-item dropdown   mr-3">
+                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fas fa-user"></i>Bienvenido {{loggedINUser}}
+                                                    </a>
+                                                </li>
+                                -->
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </div>

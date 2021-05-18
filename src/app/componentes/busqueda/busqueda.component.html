@@ -1,0 +1,23 @@
+<div class="container">
+    <div *ngIf="productos.length==0" class="row">
+        <div class="col-sm-12"></div>
+        <div class="alert alert-primary" role="alert">
+            <strong>No existen coincidencias</strong>
+        </div>
+    </div>
+    <h1>Resultado de Busqueda: </h1>
+    <div class="card-group">
+        <div *ngFor="let producto of productos, let i=index" class="card">
+            <img [src]="producto.img" class="card-img-top" alt="producto.nombre">
+            <div class="card-body">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+
+
+
+            </div>
+            <div class="card-footer">
+                <p class="card-text">{{producto.info}}</p>
+            </div>
+        </div>
+    </div>
+</div>

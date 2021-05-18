@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="container mt-5">
+        <div class="col-12">
+            <!--  <form class="form-horizontal" method="post" #enviar1="ngForm" (ngSubmit)="enviar(enviar1)">-->
+            <!--  <flash-messages></flash-messages>-->
+            <form class="form-horizontal" #productoForm="ngForm" (ngSubmit)="enviarMensaje(productoForm)">
+
+                <legend class=" text-center header ">Contactenos</legend>
+
+
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" name="nomb" class="form-control" #nomb="ngModel" [(ngModel)]="mensaje.nomb" [ngClass]=" { 'is-invalid': nomb.errors && nomb.touched} " required minlength="10">
+                    <div [hidden]="!nomb.errors?.required " class="invalid-feedback ">
+                        Nombre Completo Requerido
+                    </div>
+                    <div [hidden]="!nomb.errors?.minlength " class="invalid-feedback ">
+                        Debe de contener al menos 10 caracteres
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Teléfono</label>
+                    <input type="text" name="telefono" class="form-control" #telefono="ngModel" [(ngModel)]="mensaje.telefono" [ngClass]=" { 'is-invalid': telefono.errors && telefono.touched} " required minlength="8">
+                    <div [hidden]="!telefono.errors?.required " class="invalid-feedback ">
+                        Teléfono
+                    </div>
+                    <div [hidden]="!telefono.errors?.minlength " class="invalid-feedback ">
+                        Debe de contener al menos 8 caracteres
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Email</label>
+                    <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="mensaje.email" [ngClass]=" { 'is-invalid': email.errors && email.touched} " required minlength="8">
+                    <div [hidden]="!email.errors?.required " class="invalid-feedback ">
+                        Mensaje Requerido
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Deje su mensaje </label>
+                    <textarea type="text" name="mensa" class="form-control" #mensa="ngModel" [(ngModel)]="mensaje.mensa" [ngClass]=" { 'is-invalid': mensa.errors && mensa .touched} " required minlength="20"></textarea>
+                    <div [hidden]="!mensa.errors?.required " class="invalid-feedback ">
+                        Mensaje Requerido
+                    </div>
+                    <div [hidden]="!mensa.errors?.minlength " class="invalid-feedback ">
+                        Debe de contener al menos 20 caracteres
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group ">
+                    <div class="col-md-12 text-center ">
+                        <button type="submit" class="btn bg-orche btn-lg ">Enviar</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+</div>
