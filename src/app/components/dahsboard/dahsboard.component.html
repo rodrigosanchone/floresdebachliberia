@@ -1,0 +1,108 @@
+<div class="contenedorPrincipal">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <button type="button" class="btn bg-orche btn-block " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Agregar Nuevo Producto
+           </button>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="container mt-5 mb-4">
+        <div class="row">
+            <div class="card-group">
+               <div class="col-sm-12 col-md-6  col-lg-3 mt-4" *ngFor="let producto of products, let i=index">
+                <div class="card mx-2 h-100" >
+                    <img [src]="producto.img" class="card-img-top" alt="..." style="height: 300px;">
+                    <div class="card-header">
+                        {{producto.nombre}}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{producto.info}}</p>
+                        <p class="card-text"><small class="">{{producto.precio| currency:"CRC":"symbol-narrow"}}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn bg-orche col-12" routerLink="/producto/editar/{{producto.id}}">Editar</a>
+                    </div>
+
+                </div>
+               </div>
+
+            </div>
+        </div>
+        <div class="row mt-1">
+
+            
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                 </button>
+            </div>
+            <div class="modal-body">
+            
+                <h2 class="text-center my-5">Agregar Producto</h2>
+                <form [formGroup]="form" method="post" (ngSubmit)="onSubmit(form.value)">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Producto</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" [formControl]="nombre">
+                        <div class="alert">{{responseMessage}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="info">Información Producto</label>
+                        <input type="text" id="info" name="info" class="form-control" [formControl]="info">
+                        <div class="alert">{{responseMessage2}}</div>   
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio Producto</label>
+                        <input type="text" id="precio" name="info" class="form-control" [formControl]="precio">
+                        <div class="alert">{{responseMessage3}}</div>   
+                    </div>
+
+                     <div class="form-group">
+                        <label for="precio">Imagen Producto</label>
+                        <input (change)="cargarIMG($event)" type="file" name="imagen" class="form-control" [formControl]="img">
+                       
+
+                    </div>  
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-success text-white" data-bs-dismiss="modal">Cerrar</button>
+                       <input type="submit" class="btn bg-orche" data-dismiss="modal" value="Guardar"> 
+                    </div>
+
+                    <!--
+                                    <li *ngIf="isLoggedIn" class="nav-item dropdown   mr-3">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fas fa-user"></i>Bienvenido {{loggedINUser}}
+                                        </a>
+                                    </li>
+                    -->
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+           
+
+
+       

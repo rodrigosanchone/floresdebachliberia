@@ -1,1 +1,184 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    box-sizing: border-box;
+}
+
+.error{
+    height: 550px;
+    width: 100%;
+}
+
+.margin {
+    margin-top: 200px!important;
+}
+
+.alert{
+    color: #b2399a!important;
+}
+
+
+/**
+.alto{
+    height: 500px!important;
+}
+.alto form{
+    margin-top: 100px;
+    margin-bottom: 100px;;
+}**/
+
+
+/**Estilos contenedor principal**/
+
+.contenedorPrincipal {
+    min-height: 800px!important;
+}
+
+
+/**Estilo del .background del inicio */
+
+.background {
+    max-width: 100%;
+    min-height: 600px;
+    background-image: url('../src/assets/img/backgroud-flores.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 03);
+}
+
+
+/**productos**/
+
+.contenedorProducto {
+    position: relative!important;
+    overflow: hidden!important;
+    border-radius: 2px!important;
+}
+
+.contenedorProducto img {
+    -moz-transition: all 0.8s!important;
+    -webkit-transition: all 0.8s!important;
+    transition: all 0.8s!important;
+}
+
+.contenedorProducto:hover img {
+    -moz-transform: scale(1.2)!important;
+    -webkit-transform: scale(1.2)!important;
+    transform: scale(1.2)!important;
+}
+
+.contenedorDetalle {
+    position: absolute!important;
+    bottom: 25px!important;
+    left: 25px!important;
+    z-index: 9000!important;
+}
+
+.contenedorDetalle h4,
+.contenedorDetalle p {
+    color: #ffffff;
+}
+
+
+/**Estilos Titulos**/
+
+h1 {
+    font-size: 66px;
+    font-weight: 600;
+    line-height: 80px;
+}
+
+h2 {
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+
+/**estilo logo*/
+
+.logo-brand {
+    min-width: 160px;
+    max-width: 180px;
+}
+
+
+/**estilos menu*/
+
+.navbar {
+    box-shadow: 0 2px 4px 0 rgb(62, 182, 76);
+    min-height: 100px;
+}
+
+.navbar-toggler {
+    font-size: 45px;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.nav-link {
+    color: #111111;
+}
+
+.nav-link:hover {
+    color: #111111;
+}
+
+.active {
+    border-bottom: 1px solid!important;
+    color: rgb(62, 182, 76)!important;
+    font-weight: 900;
+}
+
+
+/**estilos footer**/
+
+footer {
+    padding: 75px 0;
+    text-align: center;
+    color: #ffff;
+    background: #3eb64c;
+}
+
+footer a {
+    color: #ffff!important;
+}
+
+footer a:hover {
+    color: #ffff!important;
+}
+
+footer .list-inline .list-inline-item {
+    padding: 10px 15px;
+}
+
+
+/*Estilos card*/
+
+.card-header {
+    background: #3eb64c!important;
+    color: #fff;
+}
+
+.card-footer {
+    background: #b2399a!important;
+    color: #fff;
+}
+
+
+/*estilos bontones*/
+
+.bg-orche {
+    background: #b2399a!important;
+    color: #fff!important;
+}
+
+.bg-contra {
+    color: #f6f6f6!important;
+    background-color: #3eb64c!important;   
+}
+
+.mleft {
+    margin-left: 80%!important;
+}

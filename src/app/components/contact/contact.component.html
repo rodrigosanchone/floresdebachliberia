@@ -1,0 +1,32 @@
+
+    <div class="container">
+        <form [formGroup]="form" method="post" (ngSubmit)="onSubmit()" class="mt-5 mb-5">
+            <legend class=" text-center header ">Contactenos</legend>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre Completo</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" [formControl]="nombre">
+              <div class="alert">{{responseMessage}}</div>
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="text" name="telefono" class="form-control" id="telefono"   [formControl]="telefono">
+              <div class="alert">{{responseMessage2}}</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="telefono"   [formControl]="email">
+                <div  class="alert">{{responseMessage3}}</div>
+            </div>
+            <div class="col">
+                <label for="mensaje" class="form-label">Deje su mensaje</label>
+                <textarea type="text" name="mensaje" id="mensaje"  class="form-control" [formControl]="mensaje" required>
+                </textarea>
+                <div  class="alert">{{responseMessage4}}</div>
+            </div>
+            
+            <input [disabled]="isLoading" type="submit" value="Enviar" class="btn btn-primary mt-2">
+          </form>
+           
+    </div>
+   
+
