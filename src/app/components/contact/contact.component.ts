@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-contact',
@@ -33,7 +34,7 @@ export class ContactComponent implements OnInit {
       nombre: this.nombre,
       email: this.email,
       mensaje: this.mensaje,
-      telefono: this.telefono,
+      
      
     });
    }
@@ -41,10 +42,10 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit(e: Event){
    
    
-    if(!this.nombre.value || !this.email.value || !this.telefono.value || !this.mensaje.value){
+    if(!this.nombre.value || !this.email.value || !this.mensaje.value){
       Swal.fire({
         title: 'Error!',
         text: 'Faltan datos que rellenar',
@@ -64,12 +65,12 @@ export class ContactComponent implements OnInit {
 
  
 
-    if(!this.telefono.value ){
+  /*   if(!this.telefono.value ){
       this.responseMessage2 = "Debe ingresar el teléfono.";
       setInterval(()=>{
         this.responseMessage2 = "";
       },6000);  
-    }
+    } */
 
     if(!this.email.valid){
       this.responseMessage3 = "Debe ingresar un email valido";
@@ -85,53 +86,21 @@ export class ContactComponent implements OnInit {
       },6000);  
     } 
 
-    if (this.form.status == "VALID" && this.honeypot.value == "") {
-      console.log('valido')
-      this.form.disable(); // disable the form if it's valid to disable multiple submissions
-      var formData: any = new FormData();
-      formData.append("name", this.nombre.value);
-      formData.append("email", this.email.value);
-      formData.append("mensaje", this.mensaje.value);
-      formData.append("telefono", this.telefono.value);
-      this.isLoading = true; // sending the post request async so it's in progress
-      this.submitted = false; // hide the response message on multiple submits
-
-      this.http.post("https://script.google.com/macros/s/AKfycbz0pf9clZHgkuu7ZOZN7bO_SuPugv6HYRzXrVNimvlg2g04M23Dmw1xq0mBvwQniFFn/exec", formData).subscribe(
-        (response:any) => {
-          // choose the response message
-          if (response["result"] == "success") {
-          /*   this.responseMessage = "Gracias por escribir, pronto te contactare!"; */
-            Swal.fire({
-              title: 'Enviado!',
-              text: 'Gracias por contactarme, pronto te contactara',
-              icon: 'success',
-              confirmButtonText: 'Cool'
-            })
-            this.form.reset()
-           
-
-          } else {
-            this.responseMessage = "Oops! Algo salio mal.";
-            console.log('error')
-            
-          }
-          this.form.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
-          this.isLoading = false; // re enable the submit button
-          
-        },
-  
-        (error) => {
-           
-        /*   this.responseMessage = "Oops! Algo salio mal."; */
-          this.form.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
-          this.isLoading = false; // re enable the submit button
-          console.log('error');
-        }
-       
-      );
-    }
+ 
+   
+    emailjs.sendForm('service_1us1nrt', 'template_30xp4hy', e.target as HTMLFormElement, 'FTQL62Z9wtMauVA22')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+      Swal.fire({
+        title: 'Enviado!',
+        text: 'Gracias por contactarme, pronto te contactara',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+      })
+      this.form.reset()
      
   }
  

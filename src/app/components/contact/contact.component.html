@@ -1,30 +1,31 @@
 
     <div class="container">
-        <form [formGroup]="form" method="post" (ngSubmit)="onSubmit()" class="mt-5 mb-5">
+        <form [formGroup]="form" method="Post" (ngSubmit)="onSubmit($event)" class="mt-5 mb-5">
             <legend class=" text-center header ">Contactenos</legend>
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre Completo</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" [formControl]="nombre">
+              <input type="text" class="form-control" id="user_name" name="user_name" [formControl]="nombre">
               <div class="alert">{{responseMessage}}</div>
             </div>
-            <div class="mb-3">
+           <!--  <div class="mb-3">
               <label for="telefono" class="form-label">Teléfono</label>
-              <input type="text" name="telefono" class="form-control" id="telefono"   [formControl]="telefono">
+              <input type="text" name="telefono" class="form-control" id="telefono" name  [formControl]="telefono">
               <div class="alert">{{responseMessage2}}</div>
-            </div>
+            </div> -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="telefono"   [formControl]="email">
+                <input type="email" name="user_email" class="form-control" id="email"   [formControl]="email">
                 <div  class="alert">{{responseMessage3}}</div>
             </div>
             <div class="col">
                 <label for="mensaje" class="form-label">Deje su mensaje</label>
-                <textarea type="text" name="mensaje" id="mensaje"  class="form-control" [formControl]="mensaje" required>
+                <textarea type="text" name="message" id="mensaje"  class="form-control" [formControl]="mensaje" required>
                 </textarea>
                 <div  class="alert">{{responseMessage4}}</div>
             </div>
             
             <input [disabled]="isLoading" type="submit" value="Enviar" class="btn btn-primary mt-2">
+            <input type="hidden" name="_next" value="http:floresdebachliberia.com">
           </form>
            
     </div>
