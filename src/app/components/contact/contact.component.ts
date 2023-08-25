@@ -23,8 +23,7 @@ export class ContactComponent implements OnInit {
   responseMessage3!: string; // the response message to show to the user
   responseMessage4!: string; // the response message to show to the user
  
- // the response message to show to the user
-/*   siteKey: string; */
+
 
   constructor(
     private formBuilder: FormBuilder, private http: HttpClient
@@ -43,18 +42,8 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(e: Event){
-   
-   
-    if(!this.nombre.value || !this.email.value || !this.mensaje.value){
-      Swal.fire({
-        title: 'Error!',
-        text: 'Faltan datos que rellenar',
-        icon: 'error',
-        confirmButtonText: 'Volver'
-      })
-     }
 
-     if(this.nombre.value.length < 3){
+    if(this.nombre.value.length < 3){
      
      
       this.responseMessage = "Este campo debe de tener minimo 3 caracteres";
@@ -65,12 +54,7 @@ export class ContactComponent implements OnInit {
 
  
 
-  /*   if(!this.telefono.value ){
-      this.responseMessage2 = "Debe ingresar el teléfono.";
-      setInterval(()=>{
-        this.responseMessage2 = "";
-      },6000);  
-    } */
+
 
     if(!this.email.valid){
       this.responseMessage3 = "Debe ingresar un email valido";
@@ -85,10 +69,17 @@ export class ContactComponent implements OnInit {
         this.responseMessage4 = "";
       },6000);  
     } 
-
- 
    
-    emailjs.sendForm('service_1us1nrt', 'template_30xp4hy', e.target as HTMLFormElement, 'FTQL62Z9wtMauVA22')
+   
+    if(!this.nombre.value || !this.email.value || !this.mensaje.value){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Faltan datos que rellenar',
+        icon: 'error',
+        confirmButtonText: 'Volver'
+      })
+     }else{
+         emailjs.sendForm('service_1us1nrt', 'template_30xp4hy', e.target as HTMLFormElement, 'FTQL62Z9wtMauVA22')
       .then((result: EmailJSResponseStatus) => {
         console.log(result.text);
       }, (error) => {
@@ -101,6 +92,13 @@ export class ContactComponent implements OnInit {
         confirmButtonText: 'Cool'
       })
       this.form.reset()
+     }
+
+    
+
+ 
+   
+  
      
   }
  
